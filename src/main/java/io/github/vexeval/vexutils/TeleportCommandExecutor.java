@@ -7,6 +7,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import net.md_5.bungee.api.ChatColor;
+
 public class TeleportCommandExecutor implements CommandExecutor {
 
 	private final VexUtils plugin;
@@ -18,7 +20,7 @@ public class TeleportCommandExecutor implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (command.getName().equalsIgnoreCase("tpa")) {
-            if (sender instanceof Player) {
+            if (sender instanceof Player && sender.hasPermission("tpa.use")) {
                 Player requester = (Player) sender;
                 Player target = plugin.getServer().getPlayerExact(args[0]);
 
@@ -36,8 +38,12 @@ public class TeleportCommandExecutor implements CommandExecutor {
                     sender.sendMessage(VexUtils.secondaryColor + "Player not found.");
                 }
             }
+            else {
+            	sender.sendMessage(ChatColor.RED + "Unable to execute command");
+            }
+            
         } else if (command.getName().equalsIgnoreCase("tpaccept")) {
-            if (sender instanceof Player) {
+            if (sender instanceof Player && sender.hasPermission("tpa.accept")) {
                 Player target = (Player) sender;
                 TeleportRequest request = getValidTeleportRequest(target);
 
@@ -56,7 +62,7 @@ public class TeleportCommandExecutor implements CommandExecutor {
                 }
             }
         } else if (command.getName().equalsIgnoreCase("tpadeny")) {
-            if (sender instanceof Player) {
+            if (sender instanceof Player && sender.hasPermission("tpa.deny")) {
                 Player target = (Player) sender;
                 TeleportRequest request = getValidTeleportRequest(target);
 
@@ -73,7 +79,7 @@ public class TeleportCommandExecutor implements CommandExecutor {
                 }
             }
         } else if (command.getName().equalsIgnoreCase("tpacancel")) {
-            if (sender instanceof Player) {
+            if (sender instanceof Player && sender.hasPermission("tpa.cancel")) {
                 Player requester = (Player) sender;
                 TeleportRequest request = getValidTeleportRequest(requester);
 

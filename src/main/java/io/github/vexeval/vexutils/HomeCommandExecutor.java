@@ -20,14 +20,15 @@ public class HomeCommandExecutor implements CommandExecutor {
 
 	public static final String COMMAND_USE_HOME = "home";
 	public static final String COMMAND_SAVE_HOME = "sethome";
-    public static final String COMMAND_DELETE_HOME = "delhome";	
-    public static final String DIR_HOME_CONF = "plugins/VexUtils/homes";
+	public static final String COMMAND_DELETE_HOME = "delhome";	
+	public static final String DIR_HOME_CONF = "plugins/VexUtils/homes";
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    	
     	// CREATE
         if (command.getName().equalsIgnoreCase(COMMAND_SAVE_HOME)) {
-            if (sender instanceof Player) {
+            if (sender instanceof Player && sender.hasPermission("home.add")) {
                 Player player = (Player) sender;
                 if (args.length == 1) {
                     String homeName = args[0];
@@ -58,13 +59,12 @@ public class HomeCommandExecutor implements CommandExecutor {
         
         // USE
         if (command.getName().equalsIgnoreCase(COMMAND_USE_HOME)) {
-            if (sender instanceof Player) {
+            if (sender instanceof Player && sender.hasPermission("home.use")) {
                 Player player = (Player) sender;
                 if (args.length == 1) {
                     String homeName = args[0];
 
                     File playerFile = new File(DIR_HOME_CONF + File.separator + player.getUniqueId() + ".yml");
-//                    player.sendMessage("Home dir " + DIR_HOME_CONF + " Loaded");
                     FileConfiguration playerConfig = YamlConfiguration.loadConfiguration(playerFile);
 
                     if (playerConfig.contains("homes." + homeName)) {
@@ -90,7 +90,7 @@ public class HomeCommandExecutor implements CommandExecutor {
         
         // DELETE
         if (command.getName().equalsIgnoreCase(COMMAND_DELETE_HOME)) {
-            if (sender instanceof Player) {
+            if (sender instanceof Player && sender.hasPermission("home.del")) {
                 Player player = (Player) sender;
                 if (args.length == 1) {
                     String homeName = args[0];

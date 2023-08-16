@@ -1,8 +1,9 @@
 name: VexUtils
-description: Lightweight utility plugin. v1.0.1 Homes, vsigns, and TPA
+description: Lightweight utility plugin. NEW homes, vsigns, and TPAs
 main: io.github.vexeval.vexutils.VexUtils
 website: vexeval.github.io
 version: 1.0.1
+api-version: 1.13
 author: vexeval
 
 commands:
@@ -42,11 +43,11 @@ permissions:
       telesigns.*: false
       tpa.*: false
       home.*: false
-  telesigns.*:
-    description: Gives access to all telesign-related actions
+  vsign.*:
+    description: Gives access to all vsign-related actions
     children:
-      telesigns.use: false
-  telesigns.use:
+      vsign.use: false
+  vsign.use:
     description: Allows users to teleport using a vsign
     default: op
   home.*:
@@ -72,14 +73,14 @@ permissions:
       tpa.cancel: false
       tpa.deny: false
   tpa.use:
-    description: Send tpa requests
+    description: Send a tpa request
     default: op
   tpa.accept:
-    description: Accept tpa requests
+    description: Accept a tpa request
     default: op
   tpa.cancel:
-    description: Cancel tpa requests
+    description: Cancel a tpa request
     default: op
   tpa.deny:
-    description: Deny tpa requests
+    description: Deny a tpa request
     default: op
