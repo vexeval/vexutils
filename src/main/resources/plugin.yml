@@ -1,0 +1,85 @@
+name: VexUtils
+description: Lightweight utility plugin. v1.0.1 Homes, vsigns, and TPA
+main: io.github.vexeval.vexutils.VexUtils
+website: vexeval.github.io
+version: 1.0.1
+author: vexeval
+
+commands:
+  home:
+    description: Teleports to a named home
+    usage: /home <home>
+    permission: home.use
+  sethome:
+    description: Sets a home at current position
+    usage: /sethome <home>
+    permission: home.add
+  delhome:
+    description: Deletes a home
+    usage: /delhome <home>
+    permission: home.del
+  tpa:
+    description: Sends a teleport request to another player
+    usage: /tpa <user>
+    permission: tpa.use
+  tpaccept:
+    description: Accepts a user's request to teleport to you
+    usage: /tpaccept
+    permission: tpa.accept
+  tpacancel:
+    description: Cancels an outbound tpa request
+    usage: /tpacancel
+    permission: tpa.cancel
+  tpadeny:
+    description: Denies a a user's request to teleport to you
+    usage: /tpadeny
+    permission: tpa.deny
+
+permissions:
+  vexutils.*:
+    description: Access to all VexUtils commands
+    children:
+      telesigns.*: false
+      tpa.*: false
+      home.*: false
+  telesigns.*:
+    description: Gives access to all telesign-related actions
+    children:
+      telesigns.use: false
+  telesigns.use:
+    description: Allows users to teleport using a vsign
+    default: op
+  home.*:
+    description: Access to all home-related commands (set, use, remove)
+    children:
+      home.add: false
+      home.del: false
+      home.use: false
+  home.add:
+    description: Allows the creation of homes
+    default: op
+  home.del:
+    description: Allows the deletion of homes
+    default: op
+  home.use:
+    description: Allows teleporting to homes
+    default: op
+  tpa.*:
+    description: Access to all tpa commands
+    children:
+      tpa.use: false
+      tpa.accept: false
+      tpa.cancel: false
+      tpa.deny: false
+  tpa.use:
+    description: Send tpa requests
+    default: op
+  tpa.accept:
+    description: Accept tpa requests
+    default: op
+  tpa.cancel:
+    description: Cancel tpa requests
+    default: op
+  tpa.deny:
+    description: Deny tpa requests
+    default: op
