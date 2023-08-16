@@ -40,7 +40,7 @@ permissions:
   vexutils.*:
     description: Access to all VexUtils commands
     children:
-      telesigns.*: false
+      vsign.*: false
       tpa.*: false
       home.*: false
   vsign.*:
